@@ -80,10 +80,11 @@ class Migration(migrations.Migration):
                 ('vaccineIDnum', models.CharField(max_length=150)),
                 ('vaccineEdition', models.CharField(max_length=150)),
                 ('aboutVaccine', models.CharField(max_length=300)),
-                ('Lastupdate', models.DateField()),
+                ('Lastupdate', models.DateField(auto_now=True)),
                 ('vaccineDoseCount', models.CharField(max_length=50)),
                 ('timestamp', models.DateTimeField(auto_now_add=True)),
                 ('updated_at', models.DateTimeField(auto_now=True)),
+                ('image', models.ImageField(null=True, upload_to=b'images/')),
             ],
         ),
         migrations.CreateModel(
