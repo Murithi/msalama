@@ -91,7 +91,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('vaccinedose', models.CharField(max_length=150)),
-                ('vaccinedoseday', models.DateField()),
+                ('vaccinedoseday', models.IntegerField()),
                 ('available', models.BooleanField()),
                 ('vaccine', models.ForeignKey(to='msalamaclient.Vaccine')),
             ],
