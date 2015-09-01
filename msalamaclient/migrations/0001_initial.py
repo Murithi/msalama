@@ -99,7 +99,7 @@ class Migration(migrations.Migration):
             ],
         ),
         migrations.CreateModel(
-            name='vaccineSideEffect',
+            name='SideEffectbyVaccine',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('sideEffectDesc', models.CharField(max_length=80)),
