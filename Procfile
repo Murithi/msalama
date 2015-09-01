@@ -1,1 +1,1 @@
-web: gunicorn msalama.wsgi
+web: gunicorn msalama.wsgi:application
