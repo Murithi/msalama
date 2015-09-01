@@ -1,0 +1,119 @@
+{% extends "base.html" %}
+{% load bootstrap3 %}
+{% block content %}
+<div id="patients_graph">
+</div>
+
+<div id="vaccines_graph">
+</div>
+
+{% endblock %}
+{% block extra_script %}
+
+<script>
+$(function () {
+    var options = {
+        chart: {
+            renderTo: 'patients_graph',
+            type: 'column',
+            marginRight: 10,
+            marginBottom: 100
+        },
+        title: {
+            text: 'No. of Patients Vaccinated',
+            x: -20 //center
+        },
+        subtitle: {
+            text: '',
+            x: -20
+        },
+        xAxis: {
+            categories: []
+        },
+        yAxis: {
+            title: {
+                text: 'Number of Patients'
+            },
+            plotLines: [{
+                value: 0,
+                width: 1,
+                color: '#cc00000'
+            }]
+        },
+        tooltip: {
+            formatter: function() {
+                  return  this.x +': '+ this.y;
+            }
+        },
+        legend: {
+            layout: 'vertical',
+            align: 'right',
+            verticalAlign: 'top',
+            x: -10,
+            y: 100,
+            borderWidth: 0
+        },
+        series: []
+    }
+    var url =  "{% url 'data' %}?type=patients_graph";
+    $.getJSON(url, function(json) {
+        options.xAxis.categories = json[0]['data'];
+        options.series[0] = json[1];
+        chart = new Highcharts.Chart(options);
+    });
+});
+
+$(function () {
+    var options = {
+        chart: {
+            renderTo: 'vaccines_graph',
+            type: 'column',
+            marginRight: 10,
+            marginBottom: 100
+        },
+        title: {
+            text: 'No. of Patients Vaccinated',
+            x: -20 //center
+        },
+        subtitle: {
+            text: '',
+            x: -20
+        },
+        xAxis: {
+            categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec']
+        },
+        yAxis: {
+            title: {
+                text: 'Number of Patients'
+            },
+            plotLines: [{
+                value: 0,
+                width: 1,
+                color: '#cc00000'
+            }]
+        },
+        tooltip: {
+            formatter: function() {
+                  return  this.x +': '+ this.y;
+            }
+        },
+        legend: {
+            layout: 'vertical',
+            align: 'right',
+            verticalAlign: 'top',
+            x: -10,
+            y: 100,
+            borderWidth: 0
+        },
+        series: []
+    }
+    var url =  "{% url 'data' %}?type=vaccine_graph";
+    $.getJSON(url, function(json) {
+        options.series = json;
+        chart = new Highcharts.Chart(options);
+    });
+
+});
+</script>
+
+{% endblock %}

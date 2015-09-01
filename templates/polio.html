@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+{% load static %} 
+
+<div class="container margin-bottom-30"> 
+        <!-- Top Stories -->
+            <!-- Split button -->
+            <div class="btn-group pull-right">
+              <button type="button" class="btn btn-danger">Action</button>
+              <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                <span class="caret"></span>
+                <span class="sr-only">Toggle Dropdown</span>
+              </button>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="{% url 'reportvaccine' %}">Report Side Effects</a></li>
+                <li><a href="{% url 'makeappointment' %}">Schedule Appointment</a></li>
+              </ul>
+            </div>
+            <div class="headline">
+              <h2>Polio Vaccines</h2>
+            </div>
+            
+                <h4> Progress by Dosage </h4>
+                
+                <div class="progress">
+               
+                  <div class="progress-bar info" style="width: {{ percentagedose }}%;">{{ percentagedose }}%</div>
+                </div>
+                 
+                 <div class="list-group">
+                      
+                        <h4>Vaccine Doses </h4>
+                    
+                    {% for item in  vaccinesrecieved %}
+
+                     <a href="{% url 'vaccinereceived' %}?polio={{item.id}}" class="list-group-item">{{ item }}<i class="glyphicon glyphicon-ok pull-right"></i></a>
+                       
+                    {% endfor %}
+                      
+                        
+                    {% for vaccine in vaccinesrequired %}
+                    
+                     <a href="{% url 'vaccinereceived' %}?vaccine={{vaccine.vaccine.id}}&dose={{vaccine.id}}" class="list-group-item">{{ vaccine }}<i class="glyphicon glyphicon-remove pull-right"></i></a>
+                     
+                        
+                    {% endfor %}
+                    
+                    
+                 </div>
+                <div role="tabpanel">
+
+                      <!-- Nav tabs -->
+                      <ul class="nav nav-tabs" role="tablist">
+                        <li role="presentation" class="active"><a href="#about" aria-controls="home" role="tab" data-toggle="tab">About</a></li>
+                        <li role="presentation"><a href="#administration" aria-controls="administration" role="tab" data-toggle="tab">Vaccine Administration</a></li>
+                        <li role="presentation"><a href="#sideeffects" aria-controls="sideeffects" role="tab" data-toggle="tab">Side Effects</a></li>
+                        <li role="presentation"><a href="#schedules" aria-controls="schedules" role="tab" data-toggle="tab">Schedules</a></li>
+                      </ul>
+
+                      <!-- Tab panes -->
+                      <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane active" id="about">
+                            The polio is a live attenuated virus. The Sabin type of vaccine is given orally, the one administered in Kenya.
+                            The other type is the Salk vaccine, used in other countries, and is administered via an injection.
+                            The vaccine is in four doses. Two drops in the mouth are recommended for each dose. Booster doses are sometimes
+                            given to children below five years of age in the country, regardless of their immunisation status</div>
+                        <div role="tabpanel" class="tab-pane" id="administration">
+                            <ul>
+                                <li> Polio 1 - 0 Weeks or at first contact </li>
+                                <li> Polio 2 - 6 Weeks after birth or first contact </li>
+                                <li> Polio 3 - 10 Weeks after birth or first contact </li>
+                                <li> Polio 4 - 14 Weeks after birth or first contact </li>
+                            </ul>
+
+                        </div>
+                        <div role="tabpanel" class="tab-pane" id="sideeffects">
+
+
+                        </div>
+                        <div role="tabpanel" class="tab-pane" id="schedules">...</div>
+                      </div>
+
+                </div>
+
+
+                
+</div>
+
+{% endblock %}

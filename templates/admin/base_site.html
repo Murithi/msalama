@@ -1,0 +1,34 @@
+{% extends "admin/base.html" %}
+
+{% block title %} M-salama | M-salama Administration {% endblock %}
+
+{% block extrastyle %}
+<style>
+    #header {
+    background: #dd4814;
+    }
+
+    #branding h1, #branding h1 a:link, #branding h1 a:visited {
+    color: #FFF;
+}
+</style>
+
+{% endblock %}
+
+{% block branding %}
+<h1 id="site-name"><a href="{% url 'admin:index' %}">M-salama Administration
+</a></h1>
+{% endblock %}
+
+{% block nav-global %}{% endblock %}
+
+
+{# Footer branding name (center) #}
+{% block footer_branding %}
+M-salama
+{% endblock %}
+
+{# Footer copyright (right side) #}
+{% block copyright %}
+  Copyright &copy; 2015 Client<br>Developed by <a href="karakanainc.com" target="_blank">Eric Murithi</a>
+{% endblock %}

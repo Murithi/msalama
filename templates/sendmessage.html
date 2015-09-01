@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load bootstrap3 %}
+{% block content %}
+
+
+{% load static %} 
+
+
+ <div class="well">
+     <form role="form" method="post" action="{% url 'sendmessage' %}" class="form-horizontal" novalidate>
+    {% csrf_token %}
+
+
+            <h2>Create Message</h2>
+            
+            {% bootstrap_form form %}
+
+                <button name="submit" type="submit" value="Send Message" class="btn btn-default">Send Message</button>
+
+
+        </form>
+  
+</div>
+
+
+{% endblock %}

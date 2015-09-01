@@ -1,0 +1,113 @@
+<!DOCTYPE html>{% load bootstrap3 %}
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }} Msalama</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}" />
+
+    <link rel="stylesheet" type="text/css" href="{% static 'css/homepage.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/base.min.css" type="text/css' %}" />
+    <link rel='stylesheet' type='text/css' href='http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css'/>
+    <script src="{% static 'js/jquery-1.10.2.js' %}"></script>
+    <script src="{% static 'js/modernizr-2.6.2.js' %}"></script>
+    <script src="http://code.highcharts.com/highcharts.js"></script>
+    <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap-combined.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" media="screen"
+     href="http://tarruda.github.com/bootstrap-datetimepicker/assets/css/bootstrap-datetimepicker.min.css">
+
+
+     {{ form.media }}
+</head>
+
+<body>
+    <div class="navbar navbar-default navbar-static-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="/"><img class="img-responsive " src="{% static 'images/Msalama_Logo.png' %}"  alt="Msalama" /> </a>
+            </div>
+            
+        </div>
+    </div>
+    <div class="navbar-collapse collapse"> 
+        <div  role="navigation">
+              <div id="primary-nav" tabindex="0">
+                <ul class="nav navbar-nav" aria-label="primary navigation">
+                  <li id="nav-about"> <a href="{% url 'loggedin' %}">Home</a></li>
+                  <li id="nav-admission"> <a href="{% url 'vaccines' %}">Vaccinations</a> </li>
+                  <li id="nav-academics"> <a href="{% url 'appointment_list' %}">Appointments </a> </li>
+                    <li id="nav-research"> <a href="{% url 'message_list' %}">Messages</a></li>
+                  <li id="nav-research"> <a href="{% url 'sendmessage' %}">Contact us</a></li>
+                    <li id="nav-research"> <a href="{% url 'logout' %}">Logout</a></li>
+                </ul>
+              </div>
+        </div>
+    
+    </div>
+<hr/>
+    <div class="container">
+        {% bootstrap_messages %}
+{% block content %}{% endblock %}
+   
+    </div>
+
+        
+                
+                  <!-- Global footer snippet start -->
+                    <div id="global-footer">
+                        <div class="container">
+                            <div class="row">
+                                <div id="bottom-logo" class="col-xs-6 col-sm-2"> <a href="#"> <img src="#" alt="Msalama" width="105" height="49"/> </a>
+                                </div>
+                                <!-- #bottom-logo end -->
+                                        <div id="bottom-text" class="col-xs-6 col-sm-10">
+                                              <ul>
+                                                <li class="home"><a href="{% url 'loggedin' %}">Msalama Home</a></li>
+                                                <li class="maps alt"><a href="#" class="su-link" data-ua-action="visit.stanford.edu/plan/maps"
+                                                                        data-ua-label="global-footer">Maps &amp; Directions</a></li>
+                                                <li class="search-stanford"><a href="#">Search Msalama</a></li>
+                                                <li class="terms alt"><a href="/site/terms.html">Terms of Use</a></li>
+                                                <li class="emergency-info"><a href="#" class="su-link" data-ua-label="global-footer">Emergency Info</a></li>
+                                              </ul>
+                                        </div>
+                            
+                                    <!-- .bottom-text end -->
+                                    <div class="clear"></div>
+                                    <p class="copyright vcard col-sm-10">&copy; <span class="fn org">Msalama</span>.&nbsp;
+                                        <span class="adr"> <span class="locality">Nairobi</span>, <span class="region">Kenya</span>
+                                            <span class="postal-code">94305</span></span>.  <span id="termsofuse">
+                                            <a href="#" class="su-link" data-ua-action="copyright-complaints" data-ua-label="global-footer"
+                                               Copyright Complaints</a>&nbsp;&nbsp;&nbsp;<a href="#" class="su-link" data-ua-action="trademark-notice" data-ua-label="global-footer">
+                                            Trademark Notice</a></span></p>
+                            </div>
+                          <!-- .row end --> 
+                            </div>
+                    <!-- .container end --> 
+                        </div>
+                  <!-- global-footer end --> 
+                  <!-- Global footer snippet end --> 
+                      
+                
+                        
+                    
+                        
+                   
+                   
+            
+
+
+    <script src="{% static 'js/bootstrap.js' %}"></script>
+    <script src="{% static 'js/respond.js' %}"></script>
+    {% block extra_script %}
+
+    {% endblock %}
+
+
+</body>
+</html>

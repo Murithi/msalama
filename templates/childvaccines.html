@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+{% load static %} 
+
+<div class="container margin-bottom-30"> 
+        <!-- Top Stories -->
+            <div class="headline">
+              <h2>Child Vaccines</h2>
+            </div>
+            <div class="row" id="news"> 
+              <!-- Top Stories include file -->
+
+                {% for item in  allvaccines %}
+                <div class="col-sm-3 news-item">
+                          <div class="news-img">
+
+                            <a href="{% url 'vaccinelist' %}?id={{ item.id }}" class="su-link"
+                             data-ua-action="hp-news" title="Photo Credit: Francois Mori">
+
+                             <img src="{{ item.image }}"
+                             class="img-responsive" alt="Marine and Jean Le Pen" /></a>
+                          </div>
+                          <div class="news-text">
+                            <h3><a href="{% url 'vaccinelist' %}?id={{ item.id }}"
+                            class="su-link" data-ua-action="hp-news">{{ item.vaccinename }}</a></h3>
+                            <p>View {{ item.vaccinename }} progress.</p>
+                          </div>
+                        </div>
+
+                {% endfor %}
+                    
+
+
+                    </div>
+            </div>
+        
+
+{% endblock %}
