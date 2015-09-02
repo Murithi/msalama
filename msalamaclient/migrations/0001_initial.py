@@ -87,7 +87,7 @@ class Migration(migrations.Migration):
                 ('vaccineIDnum', models.CharField(max_length=150)),
                 ('vaccineEdition', models.CharField(max_length=150)),
                 ('aboutVaccine', models.CharField(max_length=500)),
-                ('childVaccine', models.BooleanField(verbose_name=True)),
+                ('childVaccine', models.BooleanField(default=True)),
                 ('Lastupdate', models.DateField(auto_now=True)),
                 ('image', models.ImageField(null=True, upload_to=b'images/')),
                 ('vaccineDoseCount', models.CharField(max_length=50)),
