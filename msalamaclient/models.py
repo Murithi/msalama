@@ -34,7 +34,7 @@ class Vaccine(models.Model):
     vaccineIDnum=models.CharField(max_length=150)
     vaccineEdition=models.CharField(max_length=150)
     aboutVaccine=models.CharField(max_length=500)
-    childVaccine=models.BooleanField(True)
+    childVaccine=models.BooleanField(default=True)
     Lastupdate  =models.DateField(auto_now_add=False, auto_now=True)
 
     image = models.ImageField(upload_to="images/", null=True)

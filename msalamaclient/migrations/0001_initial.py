@@ -58,6 +58,13 @@ class Migration(migrations.Migration):
             ],
         ),
         migrations.CreateModel(
+            name='SideEffectbyVaccine',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('sideEffectDesc', models.CharField(max_length=80)),
+            ],
+        ),
+        migrations.CreateModel(
             name='UserProfile',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
@@ -80,12 +87,12 @@ class Migration(migrations.Migration):
                 ('vaccineIDnum', models.CharField(max_length=150)),
                 ('vaccineEdition', models.CharField(max_length=150)),
                 ('aboutVaccine', models.CharField(max_length=500)),
+                ('childVaccine', models.BooleanField(verbose_name=True)),
                 ('Lastupdate', models.DateField(auto_now=True)),
+                ('image', models.ImageField(null=True, upload_to=b'images/')),
                 ('vaccineDoseCount', models.CharField(max_length=50)),
                 ('timestamp', models.DateTimeField(auto_now_add=True)),
                 ('updated_at', models.DateTimeField(auto_now=True)),
-                ('image', models.ImageField(null=True, upload_to=b'images/')),
-                ('childVaccine', models.BooleanField(default=True, verbose_name=True)),
             ],
         ),
         migrations.CreateModel(
@@ -98,13 +105,10 @@ class Migration(migrations.Migration):
                 ('vaccine', models.ForeignKey(to='msalamaclient.Vaccine')),
             ],
         ),
-        migrations.CreateModel(
-            name='SideEffectbyVaccine',
-            fields=[
-                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('sideEffectDesc', models.CharField(max_length=80)),
-                ('vaccine', models.ForeignKey(to='msalamaclient.Vaccine')),
-            ],
+        migrations.AddField(
+            model_name='sideeffectbyvaccine',
+            name='vaccine',
+            field=models.ForeignKey(to='msalamaclient.Vaccine'),
         ),
         migrations.AddField(
             model_name='sideeffect',
