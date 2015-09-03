@@ -42,7 +42,7 @@ class GraphDataView(View):
         elif data_type == 'vaccine_graph':
             groups = PatientVaccination().monthly_vaccine()
 
-            # data = []
+            data = []
 
             months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
 
@@ -77,7 +77,7 @@ def login(request):
 def auth_view(request):
     username=request.POST.get('username','')
     password=request.POST.get('password','')
-    
+
     user = auth.authenticate(username=username, password=password)
     if user is not None:
         auth.login(request, user)
@@ -106,17 +106,41 @@ def logout(request):
     auth.logout(request)
     return render_to_response('logout.html')
 
-def signup(request):
+class signup(FormView):
+    form_class = SignupForm
+    template_name='signup.html'
+
+    def get(self, request, *args, **kwargs):
+        form = self.form_class()
+        return render_to_response(self.template_name, {'form':form}, context_instance=RequestContext(request))
+
+    def form_valid(self, form):
+        form.instance.firstname = form.cleaned_data.get('firstname')
+        form.instance.lastname = form.cleaned_data.get('lastname')
+        form.instance.username = form.cleaned_data.get('username')
+        form.instance.email = form.cleaned_data.get('email')
+        form.instance.password1 = form.cleaned_data.get('password1')
+        form.save()
+        return HttpResponseRedirect(reverse('signup_success'))
+
+def signupold(request):
     if request.method=="POST":
+        #assert False, request
         form = SignupForm(request.POST)
         if form.is_valid():
             form.save()
-            return HttpResponseRedirect('signup_success')
-        
-    args={}
-    args.update(csrf(request))
-    args['form'] = SignupForm()
-    return render_to_response('signup.html', args)
+            return HttpResponseRedirect(reverse('signup_success'))
+            # return HttpResponseRedirect('signup_success')
+        else:
+            args={}
+            args.update(csrf(request))
+            args['form'] = SignupForm()
+            return render_to_response('signup.html', args)
+    else:
+        args={}
+        args.update(csrf(request))
+        args['form'] = SignupForm()
+        return render_to_response('signup.html', args)
 
 
 def signup_success(request):
@@ -247,8 +271,28 @@ def polio(request):
 
     
 
-@login_required
-def userprofile(request):
+
+class LoggedInUserProfile(FormView):
+    form_class = UserProfileForm
+    template_name='userprofile.html'
+
+    def get(self, request, *args, **kwargs):
+        form = self.form_class()
+        return render_to_response(self.template_name, {'form':form}, context_instance=RequestContext(request))
+
+    def form_valid(self, form):
+        form.instance.dateofbirth = form.cleaned_data.get('dateofbirth')
+        form.instance.Height = form.cleaned_data.get('Height')
+        form.instance.Weight = form.cleaned_data.get('Weight')
+        form.instance.IDNum = form.cleaned_data.get('IDNum')
+        form.instance.Residence = form.cleaned_data.get('Residence')
+        form.instance.Phonenum = form.cleaned_data.get('Phonenum')
+        form.instance.user = self.request.user
+        form.save()
+        return HttpResponseRedirect(reverse('signup_success'))
+
+
+def userprofileold(request):
     if request.method=="POST":
         form=UserProfileForm(request.POST)
 

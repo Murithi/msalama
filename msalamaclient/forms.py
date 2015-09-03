@@ -62,7 +62,9 @@ class SignupForm(UserCreationForm):
     
 
 class UserProfileForm(forms.ModelForm):
-    dateofbirth = forms.DateField(widget=DateTimePicker(options={"format": "YYYY-MM-DD",
+
+    dateofbirth = forms.DateField(label=("Date of Birth"),
+        widget=DateTimePicker(options={"format": "YYYY-MM-DD",
                                        "pickTime": False}))
     Height= forms.CharField(label=("Height in Centimeters"), max_length=120,
                                widget=forms.TextInput({
